@@ -1,0 +1,13 @@
+(define picom
+  (make <service>
+    #:provides '(picom)
+    #:docstring "Excecute Picom compositor"
+    #:start (make-forkexec-constructor
+	     '("picom" "")
+	     #:log-file (string-append (getenv "HOME")
+                                        "/log/syncthing.log"))
+    #:oneshot? #t))
+
+(register-services picom)
+
+(start picom)
